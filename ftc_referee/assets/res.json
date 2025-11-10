@@ -1,0 +1,18 @@
+{
+	"rules": {
+		"g14": {
+			"description": "hello there",
+			"penalty": "Major"
+		}
+	},
+	"zone": {
+		"launch": {
+			
+		},
+		"secret_tunnel_red": {
+			"contactInitiator": "red",
+			"contactReceiver": "blue",
+			"rule": "g14"
+		}
+	}
+}
