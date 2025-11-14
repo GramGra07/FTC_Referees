@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = ftc_referee
+PRODUCT_NAME = ftc-referee
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = com.gentrifiedApps.ftcreferee.ftcReferee
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.gentrifiedApps.ftc_referee. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 com.gentrifiedApps.ftc-referee. All rights reserved.

@@ -1,4 +1,4 @@
-# ftc_referee
+# ftc-referee
 
 A new Flutter project.
 

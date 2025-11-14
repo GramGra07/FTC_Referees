@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.gentrifiedApps.ftc_referee" "\0"
-            VALUE "FileDescription", "ftc_referee" "\0"
+            VALUE "CompanyName", "com.gentrifiedApps.ftc-referee" "\0"
+            VALUE "FileDescription", "ftc-referee" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ftc_referee" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.gentrifiedApps.ftc_referee. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ftc_referee.exe" "\0"
-            VALUE "ProductName", "ftc_referee" "\0"
+            VALUE "InternalName", "ftc-referee" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.gentrifiedApps.ftc-referee. All rights reserved." "\0"
+            VALUE "OriginalFilename", "ftc-referee.exe" "\0"
+            VALUE "ProductName", "ftc-referee" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

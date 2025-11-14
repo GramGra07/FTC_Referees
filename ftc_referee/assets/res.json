@@ -1,18 +1,71 @@
 {
 	"rules": {
-		"g14": {
-			"description": "hello there",
+		"G402": {
+			"description": "No AUTO opponent interference. During AUTO, FIELD columns A, B, C constitute the blue side of the FIELD, and columns D, E, F (Figure 9-5) constitute the red side of the FIELD. During AUTO, a ROBOT may not:\nA. contact an opposing ALLIANCE’S ROBOT which is completely within the opposing ALLIANCE’S side of the FIELD either directly or transitively through an ARTIFACT, or\nB. disrupt an ARTIFACT from its pre-staged location on the opposing ALLIANCE’S side of the FIELD either directly or transitively through contact with an ARTIFACT, or by LAUNCHING or rolling an ARTIFACT directly into it.\nViolation: MAJOR FOUL per instance of ROBOT contact in G402.A and MAJOR FOUL per ARTIFACT in G402.B.",
 			"penalty": "Major"
+		},
+		"G424":{
+			"description":"GATE ZONE is OFF LIMITS. A ROBOT may not contact, directly or transitively though a SCORING ELEMENT, an opponent ROBOT if either ROBOT is in the opponent’s GATE ZONE, regardless of who initiates contact. Exceptions:\nA. A ROBOT in their own ALLIANCE’S GATE ZONE and in their opponent’s SECRET TUNNEL ZONE is not protected under G424.",
+"penalty":"Minor"
+		},
+		"G425":{
+			"description":"Keep out of opponent’s SECRET TUNNEL A ROBOT in the opponent’s SECRET TUNNEL ZONE may not contact, directly or transitively though a SCORING ELEMENT, an opponent ROBOT regardless of who initiates contact.",
+			"penalty":"Minor"
+		},
+		"G426":{
+			"description":"LOADING ZONE protection. A ROBOT may not contact, directly or transitively through a SCORING ELEMENT, an opponent ROBOT while either ROBOT is in the opponent’s LOADING ZONE, regardless of who initiates contact.",
+			"penalty":"Minor"
+		},
+		"G427":{
+			"description":"BASE ZONE protection. During the last 20 seconds of the MATCH, a ROBOT may not contact, directly or transitively through a SCORING ELEMENT, an opponent ROBOT while either ROBOT is in the opponent‘s BASE ZONE, regardless of who initiates contact.\nViolation: MAJOR FOUL and opponent ROBOT is awarded fully returned to BASE points.",
+			"penalty":"Major"
 		}
 	},
 	"zone": {
-		"launch": {
-			
+		"auto_red_side": {
+			"contactInitiator": "blue",
+			"contactReceiver": "red",
+			"rule": "G402"
+		},
+		"auto_blue_side":{
+			"contactInitiator":"red",
+			"contactReceiver":"blue",
+			"rule":"G402"
+		},
+		"gate_red":{
+			"contactInitiator":"blue",
+			"contactReceiver":"red",
+			"rule":"G424"
+		},
+		"gate_blue":{
+			"contactInitiator":"red",
+			"contactReceiver":"blue",
+			"rule":"G424"
 		},
 		"secret_tunnel_red": {
-			"contactInitiator": "red",
-			"contactReceiver": "blue",
-			"rule": "g14"
+			"contactReceiver":"red",
+			"rule":"G425"
+		},"secret_tunnel_blue": {
+			"contactReceiver":"blue",
+			"rule":"G425"
+		},
+
+		"loading_zone_red":{
+			"contactReceiver":"red",
+			"rule":"G426"
+		},"loading_zone_blue":{
+			"contactReceiver":"blue",
+			"rule":"G426"
+		},
+		
+		"base_zone_red":{
+			"contactInitiator":"blue",
+			"contactReceiver":"red",
+			"rule":"G427"
+		},"base_zone_blue":{
+			"contactInitiator":"red",
+			"contactReceiver":"blue",
+			"rule":"G427"
 		}
 	}
 }

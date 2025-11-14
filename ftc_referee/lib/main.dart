@@ -56,46 +56,44 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title, softWrap: true, textAlign: TextAlign.center),
         centerTitle: true,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: getDropdownMenu<Alliance>(
-                "Initiated Contact",
-                Alliance.values,
-                (value) {
-                  setState(() {
-                    _selectedAllianceInitiated = value;
-                  });
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: getDropdownMenu<Alliance>(
-                "Received Contact",
-                Alliance.values,
-                (value) {
-                  setState(() {
-                    _selectedAllianceReceived = value;
-                  });
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: getDropdownMenu<Zone>("Zone of Contact", Zone.values, (
-                value,
-              ) {
-                setState(() {
-                  _selectedZone = value;
-                });
-              }),
-            ),
-            Spacer(),
-            Spacer(),
+            const SizedBox(height: 16),
+
+            // Initiated Contact dropdown
+            getDropdownMenu<Alliance>("Initiated Contact", Alliance.values, (
+              value,
+            ) {
+              setState(() {
+                _selectedAllianceInitiated = value;
+              });
+            }),
+
+            const SizedBox(height: 16),
+
+            // Received Contact dropdown
+            getDropdownMenu<Alliance>("Received Contact", Alliance.values, (
+              value,
+            ) {
+              setState(() {
+                _selectedAllianceReceived = value;
+              });
+            }),
+
+            const SizedBox(height: 16),
+
+            // Zone dropdown
+            getDropdownMenu<Zone>("Zone of Contact", Zone.values, (value) {
+              setState(() {
+                _selectedZone = value;
+              });
+            }),
+
+            const SizedBox(height: 24),
+
             FutureBuilder<Map<String, dynamic>>(
               future: _resFuture,
               builder: (context, snapshot) {
@@ -103,19 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   return Text('Error: ${snapshot.error}');
                 }
                 if (!snapshot.hasData) {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 final data = snapshot.data!;
                 final rules = Map<String, dynamic>.from(data['rules'] as Map);
                 final zones = Map<String, dynamic>.from(data['zone'] as Map);
 
-                // Require selections
-                final initiator = _selectedAllianceInitiated?.name;
+                var initiator = _selectedAllianceInitiated?.name;
                 final receiver = _selectedAllianceReceived?.name;
                 final zoneKey = _selectedZone?.getJsonName();
-                if (initiator == null || receiver == null || zoneKey == null) {
-                  return const Text('Select both alliances and a zone.');
+
+                if (receiver == null || zoneKey == null) {
+                  return const Text('Select at least one alliance and a zone.');
                 }
 
                 final zoneMap = zones[zoneKey] as Map<String, dynamic>?;
@@ -123,12 +121,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   return const Text('No data for selected zone.');
                 }
 
-                if (zoneMap['contactInitiator'] != initiator ||
-                    zoneMap['contactReceiver'] != receiver) {
+                if (zoneMap['contactReceiver'] != receiver) {
                   return const Text('No penalty in this configuration.');
                 }
 
-                // Match found: show penalty details
+                if (initiator == null) {
+                  initiator = receiver == 'red' ? 'blue' : 'red';
+                }
+
                 final ruleId = zoneMap['rule'] as String;
                 final ruleEntry = rules[ruleId] as Map<String, dynamic>?;
 
@@ -148,7 +148,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.red,
                       ),
+                      textAlign: TextAlign.center,
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       'Rule: $ruleId',
                       style: const TextStyle(
@@ -168,7 +170,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-            Spacer(),
+
+            const SizedBox(height: 24),
           ],
         ),
       ),

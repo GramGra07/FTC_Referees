@@ -1,6 +1,14 @@
 enum Zone{
-  launch,
-  secret_tunnel_red;
+  auto_red_side,
+  auto_blue_side,
+  gate_red,
+  gate_blue,
+  secret_tunnel_red,
+  secret_tunnel_blue,
+  loading_zone_red,
+  loading_zone_blue,
+  base_zone_red,
+  base_zone_blue,;
 
   @override
   String toString(){
